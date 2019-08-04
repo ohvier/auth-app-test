@@ -1,0 +1,10 @@
+{
+  "data": {
+    "user": {
+      "name": "doctor",
+      "email": "docotor@cypress.io",
+      "password": "password"
+    },
+    "token": "random<>json<>web<>token"
+  }
+}
