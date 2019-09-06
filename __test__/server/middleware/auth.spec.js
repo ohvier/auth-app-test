@@ -13,45 +13,45 @@ describe("The auth middleware", () => {
     password: "password"
   };
 
-  let createdUser;
-  beforeAll(async () => {
-    await connect();
+  // let createdUser;
+  // beforeAll(async () => {
+  //   await connect();
 
-    createdUser = await User.create(user);
-  });
-  it("should call the next function if authentication is successful", async () => {
-    const access_token = createdUser.generateToken();
-    const req = {
-      body: {
-        access_token
-      }
-    };
-    const res = new Response();
-    const next = jest.fn();
-    await authMiddleware(req, res, next);
+  //   createdUser = await User.create(user);
+  // });
+  // it("should call the next function if authentication is successful", async () => {
+  //   const access_token = createdUser.generateToken();
+  //   const req = {
+  //     body: {
+  //       access_token
+  //     }
+  //   };
+  //   const res = new Response();
+  //   const next = jest.fn();
+  //   await authMiddleware(req, res, next);
 
-    expect(next).toHaveBeenCalled();
-  });
+  //   expect(next).toHaveBeenCalled();
+  // });
 
-  it("should return 401 if authentication fails", async () => {
-    const req = {
-      body: {}
-    };
-    const res = new Response();
-    const statusSpy = jest.spyOn(res, "status");
-    const jsonSpy = jest.spyOn(res, "json");
-    const next = jest.fn();
+  // it("should return 401 if authentication fails", async () => {
+  //   const req = {
+  //     body: {}
+  //   };
+  //   const res = new Response();
+  //   const statusSpy = jest.spyOn(res, "status");
+  //   const jsonSpy = jest.spyOn(res, "json");
+  //   const next = jest.fn();
 
-    await authMiddleware(req, res, next);
+  //   await authMiddleware(req, res, next);
 
-    expect(next).toHaveBeenCalledTimes(0);
-    expect(statusSpy).toHaveBeenCalledWith(401);
-    expect(jsonSpy).toHaveBeenCalledWith({
-      message: "Unauthenticated."
-    });
-  });
+  //   expect(next).toHaveBeenCalledTimes(0);
+  //   expect(statusSpy).toHaveBeenCalledWith(401);
+  //   expect(jsonSpy).toHaveBeenCalledWith({
+  //     message: "Unauthenticated."
+  //   });
+  // });
 
-  afterAll(async () => {
-    await disconnect();
-  });
+  // afterAll(async () => {
+  //   await disconnect();
+  // });
 });

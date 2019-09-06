@@ -16,36 +16,36 @@ describe("The register process", () => {
     email: "test@user.com",
     password: "password"
   };
-  beforeEach(async () => {
-    await User.deleteMany({});
-  });
+  // beforeEach(async () => {
+  //   await User.deleteMany({});
+  // });
 
-  it("should register a new user", async () => {
-    const response = await app()
-      .post(REGISTER_ENDPOINT)
-      .send(user);
-    // console.log(response.body);
+  // it("should register a new user", async () => {
+  //   const response = await app()
+  //     .post(REGISTER_ENDPOINT)
+  //     .send(user);
+  //   // console.log(response.body);
 
-    expect(response.status).toBe(200);
-    expect(response.body.message).toBe("Account registered.");
-    expect(response.body.data.token).toBeDefined();
-  });
+  //   expect(response.status).toBe(200);
+  //   expect(response.body.message).toBe("Account registered.");
+  //   expect(response.body.data.token).toBeDefined();
+  // });
 
-  it("should return a 422 if registration fails", async () => {
-    await User.create(user);
+  // it("should return a 422 if registration fails", async () => {
+  //   await User.create(user);
 
-    const response = await app()
-      .post(REGISTER_ENDPOINT)
-      .send(user);
+  //   const response = await app()
+  //     .post(REGISTER_ENDPOINT)
+  //     .send(user);
 
-    expect(response.status).toBe(422);
-    expect(response.body.message).toBe("Validation failed.");
-    expect(response.body.data.errors).toEqual({
-      email: "This email has already been taken."
-    });
-  });
+  //   expect(response.status).toBe(422);
+  //   expect(response.body.message).toBe("Validation failed.");
+  //   expect(response.body.data.errors).toEqual({
+  //     email: "This email has already been taken."
+  //   });
+  // });
 
-  afterAll(async () => {
-    await disconnect();
-  });
+  // afterAll(async () => {
+  //   await disconnect();
+  // });
 });
