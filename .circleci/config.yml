@@ -34,5 +34,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - before_script: chmod 0777 ./node_modules/.bin/jest
+      - run: chmod 0777 ./node_modules/.bin/jest
       - run: npm test
