@@ -1,19 +1,17 @@
-FROM centos:centos6
+FROM node:10-alpine
 
-MAINTAINER ohvier@gmail.com
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
-# Enable EPEL for Node.js
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+WORKDIR /home/node/app
 
-# Install Node...
-RUN yum install -y npm
+COPY package*.json ./
 
-# Copy app to /src
-COPY . /src
+USER node
 
-# Install app and dependencies into /src
-RUN cd /src; npm install
+RUN npm install
+
+COPY --chown=node:node . .
 
 EXPOSE 8080
 
-CMD cd /src && node ./app.js
+CMD [ "node", "app.js" ]
