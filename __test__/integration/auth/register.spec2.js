@@ -20,6 +20,9 @@ describe("The register process", () => {
   //   await User.deleteMany({});
   // });
 
+  /*
+
+
   // it("should register a new user", async () => {
   //   const response = await app()
   //     .post(REGISTER_ENDPOINT)
